@@ -3,26 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Todo App - Dashboard</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="container">
+    <div class="container">
 
-    <h2>My Tasks</h2>
+        <h2>My Tasks</h2>
 
-    <input type="text" id="task" placeholder="Enter Task">
+        <p class="subtitle">Manage your daily tasks</p>
 
-    <button onclick="addTask()">Add Task</button>
+        <div class="task-input">
 
-    <hr>
+            <input
+                type="text"
+                id="task"
+                placeholder="Enter a new task"
+            >
 
-    <div id="taskList"></div>
+            <button onclick="addTask()">Add Task</button>
 
-</div>
+        </div>
 
-<script src="script.js"></script>
+        <hr>
+
+        <div id="taskList"></div>
+
+    </div>
+
+    <script src="script.js"></script>
 
 </body>
 </html>

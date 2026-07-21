@@ -1,22 +1,51 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
 body{
-    font-family: Arial;
+    font-family:Arial, Helvetica, sans-serif;
     background:#f4f4f4;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
 }
 
 .container{
-    width:350px;
-    margin:100px auto;
+    width:400px;
     background:white;
-    padding:20px;
-    border-radius:10px;
-    box-shadow:0px 0px 10px gray;
+    padding:25px;
+    border-radius:8px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.15);
+}
+
+h2{
+    text-align:center;
+    color:#333;
+    margin-bottom:8px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#666;
+    margin-bottom:20px;
+    font-size:14px;
 }
 
 input{
     width:100%;
     padding:10px;
-    margin:10px 0;
-    box-sizing:border-box;
+    margin-bottom:15px;
+    border:1px solid #ccc;
+    border-radius:5px;
+    font-size:15px;
+}
+
+input:focus{
+    outline:none;
+    border-color:#4CAF50;
 }
 
 button{
@@ -25,9 +54,99 @@ button{
     background:#4CAF50;
     color:white;
     border:none;
+    border-radius:5px;
     cursor:pointer;
+    font-size:15px;
 }
 
 button:hover{
     background:#45a049;
+}
+
+button:disabled{
+    background:#999;
+    cursor:not-allowed;
+}
+
+p{
+    text-align:center;
+    margin-top:15px;
+}
+
+a{
+    color:#4CAF50;
+    text-decoration:none;
+}
+
+a:hover{
+    text-decoration:underline;
+}
+
+hr{
+    margin:20px 0;
+    border:none;
+    border-top:1px solid #ddd;
+}
+
+.task{
+    border:1px solid #ddd;
+    border-radius:6px;
+    padding:12px;
+    margin-bottom:12px;
+    background:#fafafa;
+}
+
+.task-info h3{
+    color:#333;
+    margin-bottom:12px;
+    font-size:17px;
+}
+
+.completed{
+    text-decoration:line-through;
+    color:gray;
+}
+
+.task-buttons{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+}
+
+.task-buttons button{
+    width:auto;
+    padding:8px 12px;
+    font-size:14px;
+}
+
+.edit-btn{
+    background:#2196F3;
+}
+
+.edit-btn:hover{
+    background:#1976D2;
+}
+
+.complete-btn{
+    background:#4CAF50;
+}
+
+.complete-btn:hover{
+    background:#388E3C;
+}
+
+.delete-btn{
+    background:#f44336;
+}
+
+.delete-btn:hover{
+    background:#d32f2f;
+}
+
+@media(max-width:450px){
+
+    .container{
+        width:90%;
+    }
+
 }

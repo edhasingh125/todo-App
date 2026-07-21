@@ -1,11 +1,12 @@
 const API = window.location.origin;
 
+
 async function register(){
 
-    const username=document.getElementById("username").value;
-    const password=document.getElementById("password").value;
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
 
-    const res=await fetch(API+"/register",{
+    const res = await fetch(API + "/register",{
 
         method:"POST",
 
@@ -20,12 +21,12 @@ async function register(){
 
     });
 
-    const data=await res.json();
+    const data = await res.json();
 
     alert(data.message);
 
-    if(data.message=="Registration Successful"){
-        window.location="login.html";
+    if(data.message === "Registration Successful"){
+        window.location = "login.html";
     }
 
 }
@@ -33,11 +34,10 @@ async function register(){
 
 async function login(){
 
-    const username=document.getElementById("username").value;
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
 
-    const password=document.getElementById("password").value;
-
-    const res=await fetch(API+"/login",{
+    const res = await fetch(API + "/login",{
 
         method:"POST",
 
@@ -52,14 +52,13 @@ async function login(){
 
     });
 
-    const data=await res.json();
+    const data = await res.json();
 
-
-    if(data.message=="Login Successful"){
+    if(data.message === "Login Successful"){
 
         localStorage.setItem("userId",data.userId);
 
-        window.location="dashboard.html";
+        window.location = "dashboard.html";
 
     }
     else{
@@ -70,13 +69,19 @@ async function login(){
 
 }
 
+
 async function addTask(){
 
-    const title=document.getElementById("task").value;
+    const title = document.getElementById("task").value.trim();
 
-    const userId=localStorage.getItem("userId");
+    if(title === ""){
+        alert("Please enter a task.");
+        return;
+    }
 
-    const res=await fetch(API+"/tasks",{
+    const userId = localStorage.getItem("userId");
+
+    await fetch(API + "/tasks",{
 
         method:"POST",
 
@@ -91,13 +96,14 @@ async function addTask(){
 
     });
 
-    document.getElementById("task").value="";
+    document.getElementById("task").value = "";
 
     loadTasks();
 
 }
 
-async function loadTasks() {
+
+async function loadTasks(){
 
     const userId = localStorage.getItem("userId");
 
@@ -110,19 +116,38 @@ async function loadTasks() {
     tasks.forEach(task => {
 
         output += `
-        <div style="border:1px solid #ccc; padding:10px; margin:10px 0; border-radius:5px;">
+        <div class="task">
 
-            <h3>${task.completed ? "✅" : "📌"} ${task.title}</h3>
+            <div class="task-info">
 
-            <button onclick="editTask('${task._id}','${task.title}')">Edit</button>
+                <h3 class="${task.completed ? "completed" : ""}">
+                    ${task.completed ? "✅" : "📌"} ${task.title}
+                </h3>
 
-            <button onclick="completeTask('${task._id}')">
-                ${task.completed ? "Completed" : "Complete"}
-            </button>
+            </div>
 
-            <button onclick="deleteTask('${task._id}')">
-                Delete
-            </button>
+            <div class="task-buttons">
+
+                <button
+                    class="edit-btn"
+                    onclick="editTask('${task._id}','${task.title}')">
+                    Edit
+                </button>
+
+                <button
+                    class="complete-btn"
+                    onclick="completeTask('${task._id}')"
+                    ${task.completed ? "disabled" : ""}>
+                    ${task.completed ? "Completed" : "Complete"}
+                </button>
+
+                <button
+                    class="delete-btn"
+                    onclick="deleteTask('${task._id}')">
+                    Delete
+                </button>
+
+            </div>
 
         </div>
         `;
@@ -133,9 +158,10 @@ async function loadTasks() {
 
 }
 
+
 async function deleteTask(id){
 
-    await fetch(API+"/tasks/"+id,{
+    await fetch(API + "/tasks/" + id,{
         method:"DELETE"
     });
 
@@ -147,7 +173,9 @@ async function editTask(id, oldTitle){
 
     const newTitle = prompt("Edit Task", oldTitle);
 
-    if(!newTitle) return;
+    if(!newTitle || newTitle.trim() === ""){
+        return;
+    }
 
     await fetch(API + "/tasks/" + id,{
 
@@ -188,5 +216,7 @@ async function completeTask(id){
 }
 
 if(window.location.pathname.includes("dashboard.html")){
+
     loadTasks();
+
 }

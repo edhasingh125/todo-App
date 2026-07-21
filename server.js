@@ -56,7 +56,7 @@ app.post("/register", async (req, res) => {
   }
 });
 
-// Login
+
 app.post("/login", async (req, res) => {
   try {
     const { username, password } = req.body;
@@ -137,7 +137,7 @@ app.put("/tasks/:id", async (req, res) => {
   }
 });
 
-// Delete Task
+
 app.delete("/tasks/:id", async (req, res) => {
   try {
     await Task.findByIdAndDelete(req.params.id);

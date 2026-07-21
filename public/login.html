@@ -3,29 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Todo App - Login</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="container">
+    <div class="container">
 
-    <h2>Login</h2>
+        <h2>Todo App</h2>
 
-    <input type="text" id="username" placeholder="Username">
+        <p class="subtitle">Login to continue</p>
 
-    <input type="password" id="password" placeholder="Password">
+        <input
+            type="text"
+            id="username"
+            placeholder="Enter Username"
+        >
 
-    <button onclick="login()">Login</button>
+        <input
+            type="password"
+            id="password"
+            placeholder="Enter Password"
+        >
 
-    <p>
-        New User?
-        <a href="register.html">Register</a>
-    </p>
+        <button onclick="login()">Login</button>
 
-</div>
+        <p class="link-text">
+            Don't have an account?
+            <a href="register.html">Register Here</a>
+        </p>
 
-<script src="script.js"></script>
+    </div>
+
+    <script src="script.js"></script>
 
 </body>
 </html>
